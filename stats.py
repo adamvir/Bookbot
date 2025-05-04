@@ -11,19 +11,69 @@ def book_word_count(file_path):
 def book_ch_count(file_path):
     
     with open(file_path, "r") as f:
-        ch_count = 0
+        
         dic_count_ch_int = {}
-        file_contents = list(f.read().lower())
+        file_contents = f.read().lower()
         
      
         for ch in file_contents:
-            if ch in dic_count_ch_int:
+            
+            if ch == " ":
+                continue
+                
+            elif ch in dic_count_ch_int:
                 dic_count_ch_int[ch] += 1
+            
             else:
-                dic_count_ch_int[ch] = 1
-        
+                dic_count_ch_int[ch] = 1  
     
     return dic_count_ch_int
+
+def list_ch_count(file_path):
+
+    final_list = []
+    dictionary = book_ch_count(file_path)
+
+    new_ch_list = list(dictionary)
+    new_ch_val = list(dictionary.values())
+
+    for i in range(0, len(new_ch_list)):
+    
+         one_line = new_ch_val[i], new_ch_list[i]
+         final_list.append(one_line)
+        
+    final_list = sorted(final_list, reverse=True)
+    final_dic = dict(final_list)
+    final_dic = {value: key for key, value in final_dic.items()}
+    final_list_keys = list(final_dic.items())
+    
+    
+    for key, value in final_list_keys:
+
+        print(f"{key}: {value}")
+
+
+
+
+    
+        
+    
+        
+        
+    
+
+    
+   
+    
+    
+
+
+
+
+    
+    
+    
+
 
 
 
